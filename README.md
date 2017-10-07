@@ -1,8 +1,27 @@
 # CarND-Controls-PID
 Self-Driving Car Engineer Nanodegree Program
 
----
+For this project, I implemented a PID controller in which the error between the current value of a parameter of interest and a desired value is calculated and a correction factor is applied to move the current value of the parameter of interest closer towards the desired value. For this project, the cross-track error (CTE), or the deviation of the vehicle from the center of the lane, is used to calculate the steering angle correction factor, which is then applied to minimize the (CTE).
 
+The steering angle is given by the following formula:
+Kp*p_error + Ki*i_error + Kd*d_error
+
+where Kp* p_error is the proportional term, Ki* i_error is the integral term, and Kd* d_error is the derivative term. 
+
+The proportional term causes the car the steer in proportion to the CTE. This term has the greatest effect on the car's overall position in the lane. If the proportional term is too large, then the car will steer too hard in one direction to correct for the CTE and then steer too hard back in the original direction, repeating until the car leaves the road. If this term is too small, then the car won't be able to navigate curves and other road features.
+
+The integral term is related to systematic bias in the car that prevents the CTE from ever reaching zero. The most common cause of this is when the car is out of alignment. The integral term is proportional to the total CTE of the car. 
+
+The derivative term controls the oscillations caused by the proporational term and provides stability to the vehicle. It is related to the derivative of the CTE. 
+
+##Tuning
+The parameters Kp, Kd, and Ki were manually tuned. The car didn't appear to have any bias pulling it one way or another when on a straight-away, so I set Ki to 0. Note: I also tried small values of Ki to confirm this decision. 
+
+When tuning Kp and Kd, I first kept Kd at 0 and found the lowest value of Kp that kept the car pretty much on the road but had oscillations. I then increased Kd until the oscillations were damped enough to not make me motion sick.
+
+
+---
+# Provided Project Description
 ## Dependencies
 
 * cmake >= 3.5
