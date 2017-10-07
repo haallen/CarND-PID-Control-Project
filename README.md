@@ -4,7 +4,7 @@ Self-Driving Car Engineer Nanodegree Program
 For this project, I implemented a PID controller in which the error between the current value of a parameter of interest and a desired value is calculated and a correction factor is applied to move the current value of the parameter of interest closer towards the desired value. For this project, the cross-track error (CTE), or the deviation of the vehicle from the center of the lane, is used to calculate the steering angle correction factor, which is then applied to minimize the (CTE).
 
 The steering angle is given by the following formula:
-Kp*p_error + Ki*i_error + Kd*d_error
+Kp* p_error + Ki* i_error + Kd* d_error
 
 where Kp* p_error is the proportional term, Ki* i_error is the integral term, and Kd* d_error is the derivative term. 
 
@@ -14,11 +14,11 @@ The integral term is related to systematic bias in the car that prevents the CTE
 
 The derivative term controls the oscillations caused by the proporational term and provides stability to the vehicle. It is related to the derivative of the CTE. 
 
-##Tuning
+## Tuning
+
 The parameters Kp, Kd, and Ki were manually tuned. The car didn't appear to have any bias pulling it one way or another when on a straight-away, so I set Ki to 0. Note: I also tried small values of Ki to confirm this decision. 
 
 When tuning Kp and Kd, I first kept Kd at 0 and found the lowest value of Kp that kept the car pretty much on the road but had oscillations. I then increased Kd until the oscillations were damped enough to not make me motion sick.
-
 
 ---
 # Provided Project Description
